@@ -35,7 +35,7 @@ export default function Login() {
         try {
             // Realizamos la petición al backend.
             const response = await fetch(
-                "http://localhost/student006/cook-and-plan/api/auth/login.php",
+                "http://localhost/student006/cook-and-plan/api/auth/db_login.php",
                 {
                     method: "POST",
                     headers: {
@@ -57,7 +57,7 @@ export default function Login() {
             if (data.success) {
                 // Guardamos datos del usuario en localStorage o context
                 localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/dashboard");
+                navigate("/");
             } else {
                 setError(data.message || "Error al iniciar sesión");
             }
