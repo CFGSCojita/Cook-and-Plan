@@ -78,7 +78,7 @@
         echo json_encode([
             "success" => true,
             "message" => "Inicio de sesión exitoso.",
-            "data" => [
+            "user" => [
                 "id_usuario" => $user['id_usuario'],
                 "nombre" => $user['nombre'],
                 "email" => $user['email']

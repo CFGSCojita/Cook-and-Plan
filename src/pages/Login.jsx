@@ -57,7 +57,7 @@ export default function Login() {
             if (data.success) {
                 // Guardamos datos del usuario en localStorage o context
                 localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/");
+                navigate("/dashboard"); // Navegamos al dashboard.
             } else {
                 setError(data.message || "Error al iniciar sesión");
             }
@@ -83,17 +83,6 @@ export default function Login() {
             {/* Contenido principal */}
             <main className="flex-1 flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-md">
-                    {/* Mensaje de bienvenida */}
-                    <div className="mb-8">
-                        <h1 className="text-2xl font-bold text-dark mb-2">
-                            Bienvenido de nuevo
-                        </h1>
-                        <p className="text-gray-600">
-                            Inicia sesión para acceder a tus recetas, planes de
-                            comidas y herramientas personalizadas de Cook&Plan.
-                        </p>
-                    </div>
-
                     {/* Formulario */}
                     <div className="bg-white rounded-lg shadow-sm p-8">
                         <h2 className="text-xl font-semibold text-dark mb-6">
