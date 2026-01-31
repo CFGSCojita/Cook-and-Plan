@@ -1,71 +1,52 @@
-// Importaciones necesarias.
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+// Importación de dependencias y contextos necesarios:
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
+// Componente principal de Login:
 export default function Login() {
-    const navigate = useNavigate(); // Declaramos un hook para navegación.
+    const { login } = useContext(AuthContext); // Obtenemos la función de login desde el contexto de autenticación.
 
-    // Estado para manejar datos del formulario, errores y carga.
+    // Declaramos un useState para manejar los datos del formulario, errores y estado de carga:
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        remember: false,
     });
-    const [error, setError] = useState(""); // Estado para mensajes de error.
-    const [loading, setLoading] = useState(false); // Estado para indicar carga.
+    const [error, setError] = useState(""); // Estado para manejar mensajes de error.
+    const [loading, setLoading] = useState(false); // Estado para manejar el estado de carga.
 
-    // Manejador de cambios en los campos del formulario.
+    // Creamos un manejador de cambios en los campos del formulario:
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target; // Desestructuramos el evento.
-        // Actualizamos el estado del formulario.
+        const { name, value } = e.target; // Extraemos el nombre y valor del campo modificado.
+
+        // Actualizamos el estado del formulario con el nuevo valor:
         setFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: value,
         }));
     };
 
-    // Manejador de envío del formulario.
+    // Creamos otro manejador para el envío del formulario:
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevenimos el comportamiento por defecto.
-        setError(""); // Reseteamos errores.
-        setLoading(true); // Indicamos que estamos en carga.
+        e.preventDefault(); // Prevenimos el comportamiento por defecto del formulario.
+        setError(""); // Reseteamos cualquier error previo.
+        setLoading(true); // Indicamos que el proceso de login ha comenzado.
 
         // Estructura 'try-catch'.
-        // Intentará realizar la petición de login. Si falla, capturará el error.
+        // Intentará ejecutar el login y capturará cualquier error que ocurra:
         try {
-            // Realizamos la petición al backend.
-            const response = await fetch(
-                "http://localhost/student006/cook-and-plan/api/auth/db_login.php",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        email: formData.email,
-                        password: formData.password,
-                    }),
-                }
-            );
-
-            const data = await response.json(); // Parseamos la respuesta JSON.
+            const data = await login(formData.email, formData.password); // Llamamos a la función de login con los datos del formulario.
 
             // Estructura de control 'if'.
-            // Si la respuesta es exitosa, navegamos al dashboard.
-            // Si no, mostramos el mensaje de error.
-            if (data.success) {
-                // Guardamos datos del usuario en localStorage o context
-                localStorage.setItem("user", JSON.stringify(data.user));
-                navigate("/dashboard"); // Navegamos al dashboard.
-            } else {
+            // Si el login no fue exitoso, mostramos un mensaje de error:
+            if (!data.success) {
                 setError(data.message || "Error al iniciar sesión");
             }
         } catch (err) {
-            setError("Error de conexión. Intenta de nuevo.");
-            console.error("Login error:", err);
+            setError("Error de conexión. Intenta de nuevo."); // Mensaje genérico de error en caso de fallo en la conexión.
+            console.error("Login error:", err); // Logueamos el error en la consola para depuración.
         } finally {
-            setLoading(false);
+            setLoading(false); // Indicamos que el proceso de login ha finalizado.
         }
     };
 
@@ -146,7 +127,7 @@ export default function Login() {
                                 </Link>
                             </div>
 
-                            {/* Botón submit */}
+                            {/* Botón enviar */}
                             <button
                                 type="submit"
                                 disabled={loading}
@@ -195,7 +176,7 @@ export default function Login() {
                             </h3>
                             <ul className="space-y-1 text-gray-600">
                                 <li>
-                                    <Link to="/recetas">Sobre nosotros</Link>
+                                    <Link to="/sobre-nosotros">Sobre nosotros</Link>
                                 </li>
                                 <li>
                                     <Link to="/contacto">Contacto</Link>
@@ -213,7 +194,7 @@ export default function Login() {
                             </h3>
                             <ul className="space-y-1 text-gray-600">
                                 <li>
-                                    <Link to="/terminos">Términos</Link>
+                                    <Link to="/terminos">Términos y Condiciones</Link>
                                 </li>
                                 <li>
                                     <Link to="/licencia">Licencia</Link>
@@ -231,13 +212,13 @@ export default function Login() {
                             </h3>
                             <ul className="space-y-1 text-gray-600">
                                 <li>
-                                    <a href="#">Twitter</a>
+                                    <a href="#" aria-label="Twitter">Twitter</a>
                                 </li>
                                 <li>
-                                    <a href="#">Instagram</a>
+                                    <a href="#" aria-label="Instagram">Instagram</a>
                                 </li>
                                 <li>
-                                    <a href="#">Facebook</a>
+                                    <a href="#" aria-label="Facebook">Facebook</a>
                                 </li>
                             </ul>
                         </div>
