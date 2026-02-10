@@ -50,6 +50,8 @@ export default function Login() {
         }
     };
 
+    // El componente renderiza una pantalla de login centrada sin footer,
+    // ya que es una pantalla de autenticación que debe ser limpia y enfocada:
     return (
         <div className="min-h-screen bg-light flex flex-col">
             {/* Header simple */}
@@ -64,12 +66,12 @@ export default function Login() {
             {/* Contenido principal */}
             <main className="flex-1 flex items-center justify-center px-4 py-12">
                 <div className="w-full max-w-md">
-                    {/* Formulario */}
                     <div className="bg-white rounded-lg shadow-sm p-8">
                         <h2 className="text-xl font-semibold text-dark mb-6">
                             Iniciar sesión
                         </h2>
 
+                        {/* Mostramos el mensaje de error si existe */}
                         {error && (
                             <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-md text-sm">
                                 {error}
@@ -93,7 +95,6 @@ export default function Login() {
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                    placeholder="tu@email.com"
                                 />
                             </div>
 
@@ -113,11 +114,10 @@ export default function Login() {
                                     onChange={handleChange}
                                     required
                                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                    placeholder="••••••••"
                                 />
                             </div>
 
-                            {/* Restablecer contraseña */}
+                            {/* Enlace para recuperar contraseña */}
                             <div className="flex items-center justify-between">
                                 <Link
                                     to="/recuperar-password"
@@ -127,31 +127,27 @@ export default function Login() {
                                 </Link>
                             </div>
 
-                            {/* Botón enviar */}
+                            {/* Botón de envío, deshabilitado mientras carga */}
                             <button
                                 type="submit"
                                 disabled={loading}
                                 className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {loading
-                                    ? "Iniciando sesión..."
-                                    : "Iniciar sesión"}
+                                {loading ? "Iniciando sesión..." : "Iniciar sesión"}
                             </button>
                         </form>
 
-                        {/* Divider */}
+                        {/* Divider visual entre el formulario y el enlace de registro */}
                         <div className="relative my-6">
                             <div className="absolute inset-0 flex items-center">
                                 <div className="w-full border-t border-gray-300"></div>
                             </div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-white text-gray-500">
-                                    o
-                                </span>
+                                <span className="px-2 bg-white text-gray-500">o</span>
                             </div>
                         </div>
 
-                        {/* Enlace a registro */}
+                        {/* Enlace a registro para usuarios sin cuenta */}
                         <p className="mt-6 text-center text-sm text-gray-600">
                             ¿No tienes cuenta?{" "}
                             <Link
@@ -164,77 +160,6 @@ export default function Login() {
                     </div>
                 </div>
             </main>
-
-            {/* Footer */}
-            <footer className="bg-cream py-8 px-4 mt-12">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-sm">
-                        {/* Inicio */}
-                        <div>
-                            <h3 className="font-semibold text-dark mb-2">
-                                Inicio
-                            </h3>
-                            <ul className="space-y-1 text-gray-600">
-                                <li>
-                                    <Link to="/sobre-nosotros">Sobre nosotros</Link>
-                                </li>
-                                <li>
-                                    <Link to="/contacto">Contacto</Link>
-                                </li>
-                                <li>
-                                    <Link to="/privacidad">Privacidad</Link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Legal */}
-                        <div>
-                            <h3 className="font-semibold text-dark mb-2">
-                                Legal
-                            </h3>
-                            <ul className="space-y-1 text-gray-600">
-                                <li>
-                                    <Link to="/terminos">Términos y Condiciones</Link>
-                                </li>
-                                <li>
-                                    <Link to="/licencia">Licencia</Link>
-                                </li>
-                                <li>
-                                    <Link to="/cookies">Cookies</Link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Social */}
-                        <div>
-                            <h3 className="font-semibold text-dark mb-2">
-                                Social
-                            </h3>
-                            <ul className="space-y-1 text-gray-600">
-                                <li>
-                                    <a href="#" aria-label="Twitter">Twitter</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-label="Instagram">Instagram</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-label="Facebook">Facebook</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Cook&Plan */}
-                        <div>
-                            <h3 className="font-semibold text-dark mb-2">
-                                Cook&Plan
-                            </h3>
-                            <p className="text-gray-600 text-xs">
-                                2025 Cook&Plan - Todos los derechos reservados
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }
