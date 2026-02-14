@@ -18,11 +18,12 @@
     $database = new Database(); // Creamos una nueva instancia de la clase 'Database'.
     $db = $database->getConnection(); // Obtenemos la conexión a la base de datos.
 
-    // Realizamos una consulta SQL para seleccionar las recetas del usuario autenticado, ordenadas por fecha de creación de forma descendente:
-    $sql = "SELECT id_receta, nombre, descripcion, tiempo_preparacion, porciones, created_at 
-            FROM recetas 
-            WHERE id_usuario = ? 
-            ORDER BY created_at DESC";
+    // Realizamos una consulta SQL para seleccionar todas las recetas del usuario autenticado, ordenadas por fecha de creación de forma ascendente:
+    $sql = "SELECT id_receta, nombre, descripcion, ingredientes, pasos, tiempo_preparacion, porciones, created_at
+            FROM recetas
+            WHERE id_usuario = ?
+            ORDER BY created_at ASC";
+            
     $stmt = $db->prepare($sql); // Preparamos la consulta SQL.
     $stmt->bind_param('i', $_SESSION['user_id']); // Vinculamos el ID del usuario autenticado a la consulta SQL.
     $stmt->execute(); // Ejecutamos la consulta SQL.

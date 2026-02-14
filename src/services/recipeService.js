@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */ // Quitar warning.
 
 const API_URL = 'http://localhost/student006/cook-and-plan/api'; // Declaramos una variable con la ruta hasta la carpeta API.
 
 /* 
 
-Creamos una función asíncrona por cada operación que necesitaremos: 'getRecipes()' para obtener las recetas, 'createRecipe()' para crearlas,'updateRecipe()' para 
-actualizarlas, 'deleteRecipe()' para eliminarlas y 'getRecipeById()' para ver su detalle. El parámetro 'recipeData' se usa para representar los datos de la receta. 
+Creamos una función asíncrona por cada operación que necesitaremos: 'getRecetas()' para obtener las recetas, 'crearRecetas()' para crearlas,'actualizarRecetas()' para 
+actualizarlas, 'eliminarRecetas()' para eliminarlas y 'getRecetaPorId()' para ver su detalle. El parámetro 'recipeData' se usa para representar los datos de la receta. 
 El parámetro 'id' para pasarle el ID y poder identificar cuál es la receta la cuál queremos ver el detalle.
 
 Dentro de cada función aparte de si es POST añadir el cuerpo con los datos de la receta, comprobamos si la respuesta del servidor indica éxito (data.success), y si no,
@@ -16,10 +15,10 @@ similar, solo cambian los parámetros de las funciones y el 'body' del 'response
 
 */
 
-async function getRecipes() {
+async function getRecetas() {
     try {
-        const response = await fetch(`${API_URL}/recipes/listar.php`, {
-            method: 'GET',
+        const response = await fetch(`${API_URL}/recetas/listar.php`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include'
         });
@@ -36,9 +35,9 @@ async function getRecipes() {
     }
 }
 
-async function createRecipe(recipeData) {
+async function crearRecetas(recipeData) {
     try {
-        const response = await fetch(`${API_URL}/recipes/crear.php`, {
+        const response = await fetch(`${API_URL}/recetas/crear.php`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -57,9 +56,9 @@ async function createRecipe(recipeData) {
     }
 }
 
-async function updateRecipe(recipeData) {
+async function actualizarRecetas(recipeData) {
     try {
-        const response = await fetch(`${API_URL}/recipes/actualizar.php`, {
+        const response = await fetch(`${API_URL}/recetas/actualizar.php`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
@@ -78,13 +77,13 @@ async function updateRecipe(recipeData) {
     }
 }
 
-async function deleteRecipe(id) {
+async function eliminarRecetas(id) {
     try {
-        const response = await fetch(`${API_URL}/recipes/eliminar.php`, {
+        const response = await fetch(`${API_URL}/recetas/eliminar.php`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
-            body: JSON.stringify({ id })
+            body: JSON.stringify({ id_receta: id })
         });
 
         const data = await response.json();
@@ -99,10 +98,10 @@ async function deleteRecipe(id) {
     }
 }
 
-async function getRecipeById(id) {
+async function getRecetaPorId(id) {
     try {
-        const response = await fetch(`${API_URL}/recipes/detalle.php?id=${id}`, {
-            method: 'GET',
+        const response = await fetch(`${API_URL}/recetas/detalle.php?id=${id}`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
         });
@@ -118,3 +117,5 @@ async function getRecipeById(id) {
         console.log("Se ha producido un error obteniendo el detalle de las recetas: " + e.message);
     }
 }
+
+export { getRecetas, crearRecetas, actualizarRecetas, eliminarRecetas, getRecetaPorId }; // Exportamos las funciones para poder usarlas en otros archivos.

@@ -6,27 +6,17 @@ import RutaProtegida from './components/RutaProtegida'
 import './index.css'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import Recetas from './pages/recetas/Recetas'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Redirigimos / → /dashboard (RutaProtegida se encarga de mandar al login si no está autenticado) */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          
           <Route path="/login" element={<Login />} />
-          
-          <Route
-            path="/dashboard"
-            element={
-              <RutaProtegida>
-                <Dashboard />
-              </RutaProtegida>
-            }
-          />
-
-          {/* Cualquier ruta desconocida que vaya al /dashboard */}
+          <Route path="/dashboard" element={<RutaProtegida><Dashboard /></RutaProtegida>} />
+          <Route path="/recetas" element={<RutaProtegida><Recetas /></RutaProtegida>} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </AuthProvider>

@@ -34,7 +34,7 @@
     $ingredientes = $data->ingredientes;
     $pasos = $data->pasos ?? '';
     $tiempo_preparacion = $data->tiempo_preparacion ?? null;
-    $porciones = $data->porciones ?? 4;
+    $porciones = $data->porciones ?? null;
 
     $database = new Database(); // Creamos una nueva instancia de la clase 'Database'.
     $db = $database->getConnection(); // Obtenemos la conexión a la base de datos.
