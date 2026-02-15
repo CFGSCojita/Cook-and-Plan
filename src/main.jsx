@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Recetas from './pages/recetas/Recetas'
 import Menu from './pages/menus/Menu'
+import RestablecerPassword from './pages/RestablecerPassword'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/restablecer-password" element={<RestablecerPassword />} />
           <Route path="/dashboard" element={<RutaProtegida><Dashboard /></RutaProtegida>} />
           <Route path="/recetas" element={<RutaProtegida><Recetas /></RutaProtegida>} />
           <Route path="/menus" element={<RutaProtegida><Menu /></RutaProtegida>} />

@@ -121,7 +121,7 @@ export default function Login() {
                             {/* Enlace para recuperar contraseña */}
                             <div className="flex items-center justify-between">
                                 <Link
-                                    to="/recuperar-password"
+                                    to="/restablecer-password"
                                     className="text-sm text-primary hover:underline"
                                 >
                                     ¿Olvidaste tu contraseña?
