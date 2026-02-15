@@ -1,4 +1,5 @@
 // Importación de dependencias y contextos necesarios:
+import logo from "../assets/img/logo-cook_plan.webp";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
@@ -58,7 +59,7 @@ export default function Login() {
             <header className="py-6 px-4">
                 <div className="max-w-7xl mx-auto">
                     <Link to="/" className="text-2xl font-bold text-primary">
-                        Cook&Plan
+                        <img src={logo} alt="Cook&Plan" className="h-24 w-auto" />
                     </Link>
                 </div>
             </header>
