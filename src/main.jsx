@@ -10,6 +10,8 @@ import Dashboard from './pages/Dashboard'
 import Recetas from './pages/recetas/Recetas'
 import Menu from './pages/menus/Menu'
 import RestablecerPassword from './pages/RestablecerPassword'
+import Novedades from './pages/Novedades'
+import ConsideracionesDemo from './pages/ConsideracionesDemo'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,6 +23,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="/register" element={<Register />} />
           <Route path="/restablecer-password" element={<RestablecerPassword />} />
           <Route path="/dashboard" element={<RutaProtegida><Dashboard /></RutaProtegida>} />
+          <Route path="/novedades" element={<Novedades />} />
+          <Route path="/consideraciones" element={<ConsideracionesDemo />} />
           <Route path="/recetas" element={<RutaProtegida><Recetas /></RutaProtegida>} />
           <Route path="/menus" element={<RutaProtegida><Menu /></RutaProtegida>} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />

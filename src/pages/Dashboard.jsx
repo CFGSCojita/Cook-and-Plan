@@ -14,10 +14,26 @@ export default function Dashboard() {
             <header className="bg-white shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
                     <Link to="/" className="text-2xl font-bold text-primary">
-                        <img src={logo} alt="Cook&Plan" className="h-24 w-auto" />
+                        <img
+                            src={logo}
+                            alt="Cook&Plan"
+                            className="h-24 w-auto"
+                        />
                     </Link>
                     <div className="flex items-center gap-4">
-                        <span className="text-dark">
+                        <Link
+                            to="/consideraciones"
+                            className="text-sm italic text-primary underline transition-colors"
+                        >
+                            Consideraciones de la demo
+                        </Link>
+                        <Link
+                            to="/novedades"
+                            className="text-sm italic text-primary underline transition-colors"
+                        >
+                            Novedades
+                        </Link>
+                        <span className="text-primary border border-accent rounded-md px-3 py-1 text-sm">
                             ¡Bienvenido, {user?.nombre || "Usuario"}!
                         </span>
                         <button
@@ -38,7 +54,8 @@ export default function Dashboard() {
                         ¡Bienvenido a la demo de Cook&Plan!
                     </h1>
                     <p className="text-gray-600">
-                        Gestiona tus recetas, planifica tus menús y genera listas de compra automáticamente.
+                        Gestiona tus recetas, planifica tus menús y genera
+                        listas de compra automáticamente.
                     </p>
                 </div>
 
