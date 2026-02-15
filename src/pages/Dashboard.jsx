@@ -34,7 +34,7 @@ export default function Dashboard() {
                 {/* Sección de Bienvenida */}
                 <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
                     <h1 className="text-3xl font-bold text-dark mb-2">
-                        ¡Bienvenido a Cook&Plan!
+                        ¡Bienvenido a la demo de Cook&Plan!
                     </h1>
                     <p className="text-gray-600">
                         Gestiona tus recetas, planifica tus menús y genera listas de compra automáticamente.

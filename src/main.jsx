@@ -7,6 +7,7 @@ import './index.css'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Recetas from './pages/recetas/Recetas'
+import Menu from './pages/menus/Menu'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<RutaProtegida><Dashboard /></RutaProtegida>} />
           <Route path="/recetas" element={<RutaProtegida><Recetas /></RutaProtegida>} />
+          <Route path="/menus" element={<RutaProtegida><Menu /></RutaProtegida>} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </AuthProvider>
